@@ -504,6 +504,31 @@ void Adafruit_GFX::fillTriangle(int16_t x0, int16_t y0,
 
 // Draw a PROGMEM-resident 1-bit image at the specified (x,y) position,
 // using the specified foreground color (unset bits are transparent).
+
+
+/**************************************************************************/
+/*!
+   @brief    画五角星
+    @param    五角星重心x坐标
+    @param    五角星重心y坐标
+    @param    l   五角星重心到顶点长度
+    @param    color 16-bit 5-6-5 Color to draw with
+*/
+/**************************************************************************/
+void Adafruit_GFX::drawPentengle(int16_t x0, int16_t y0, int16_t l, uint16_t color) {
+	int16_t x1,y1,x2,y2,x3,y3,x4,y4,x5,y5;
+	x1=x0;y1=y0-l;
+	x2=int16_t(x0+0.95*l);y2=int16_t(y0-0.3*l);
+	x3=int16_t(x0-0.95*l);y3=int16_t(y0-0.3*l);
+	x4=int16_t(x0+0.59*l);y4=int16_t(y0+0.8*l);
+	x5=int16_t(x0-0.59*l);y5=int16_t(y0+0.8*l);
+	drawLine(x1, y1, x4, y4, color);
+	drawLine(x1, y1, x5, y5, color);
+	drawLine(x3, y3, x4, y4, color);
+	drawLine(x2, y2, x5, y5, color);
+	drawLine(x2, y2, x3, y3, color);
+}
+
 void Adafruit_GFX::drawBitmap(int16_t x, int16_t y,
   const uint8_t bitmap[], int16_t w, int16_t h, uint16_t color) {
 
