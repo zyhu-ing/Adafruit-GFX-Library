@@ -52,6 +52,8 @@ class Adafruit_GFX : public Print {
     drawCircle(int16_t x0, int16_t y0, int16_t r, uint16_t color),
     drawCircleHelper(int16_t x0, int16_t y0, int16_t r, uint8_t cornername,
       uint16_t color),
+
+    drawOval(int16_t x0, int16_t y0, int16_t r, uint16_t color),
 		
     fillCircle(int16_t x0, int16_t y0, int16_t r, uint16_t color),
     fillCircleHelper(int16_t x0, int16_t y0, int16_t r, uint8_t cornername,
