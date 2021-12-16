@@ -290,6 +290,41 @@ void Adafruit_GFX::drawCircleHelper( int16_t x0, int16_t y0,
     }
 }
 
+void Adafruit_GFX::drawOval(int16_t x0, int16_t y0, int16_t r,
+        uint16_t color) {
+    int16_t f = 1 - r;
+    int16_t ddF_x = 1;
+    int16_t ddF_y = -2 * r;
+    int16_t x = 0;
+    int16_t y = r;
+
+    startWrite();
+    writePixel(x0  , y0+r, color);
+    writePixel(x0  , y0-r, color);
+    writePixel(x0+2*r, y0  , color);
+    writePixel(x0-2*r, y0  , color);
+
+    while (x<y) {
+        if (f >= 0) {
+            y--;
+            ddF_y += 2;
+            f += ddF_y;
+        }
+        x++;
+        ddF_x += 2;
+        f += ddF_x;
+
+        writePixel(x0 + 2*x, y0 + y, color);
+        writePixel(x0 - 2*x, y0 + y, color);
+        writePixel(x0 + 2*x, y0 - y, color);
+        writePixel(x0 - 2*x, y0 - y, color);
+        writePixel(x0 + 2*y, y0 + x, color);
+        writePixel(x0 - 2*y, y0 + x, color);
+        writePixel(x0 + 2*y, y0 - x, color);
+        writePixel(x0 - 2*y, y0 - x, color);
+    }
+    endWrite();
+}
 void Adafruit_GFX::fillCircle(int16_t x0, int16_t y0, int16_t r,
         uint16_t color) {
     startWrite();
